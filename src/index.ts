@@ -18,6 +18,6 @@ async function loadWeather() {
   ///#######Update text######
   //Current Day
 
-  console.log(weather.forecast[0].wind);
+  console.log(weather);
 }
 loadWeather();

@@ -47,37 +47,34 @@ export function loadLocal(key: string) {
 
 //get data from server
 
-export async function loadServer() {
-  async function api(url: string) {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    return await response.json();
+export async function loadServer(): Promise<Weather | void> {
+  const api = `https://goweather.herokuapp.com/weather/london`;
+  try {
+    const response = await fetch(api);
+    const data = await response.json();
+
+    const arr = [
+      data.temperature,
+      data.wind,
+      data.description,
+      data.forecast[0].day,
+      data.forecast[0].temperature,
+      data.forecast[0].wind,
+      data.forecast[1].day,
+      data.forecast[1].temperature,
+      data.forecast[1].wind,
+      data.forecast[2].day,
+      data.forecast[2].temperature,
+      data.forecast[2].wind
+    ];
+
+    const result = arr.every((e) => {
+      return typeof e === `string`;
+    });
+    if (!result) throw `Type error please contact Api administrator`;
+
+    return data;
+  } catch (error) {
+    alert(`Unable to updatedate reason: ${error}`);
   }
-
-  let temp = api(`https://goweather.herokuapp.com/weather/london`);
-
-  //   const weather: Weather = temp;
-  // temperature: "9 °C",
-  // wind: "4 km/h",
-  // description: "Clear",
-  // forecast: [
-  //   {
-  //     day: "1",
-  //     temperature: "+11 °C",
-  //     wind: "14 km/h"
-  //   },
-  //   {
-  //     day: "2",
-  //     temperature: "10 °C",
-  //     wind: "4 km/h"
-  //   },
-  //   {
-  //     day: "3",
-  //     temperature: "13 °C",
-  //     wind: "6 km/h"
-  //   }
-  // ]
-  return temp;
 }
