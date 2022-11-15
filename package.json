@@ -4,6 +4,11 @@
   "description": "Weather app displaying 3 day forcast",
   "main": "index.html",
   "scripts": {
+    "build": "webpack serve --mode production --open",
+    "build:p": "webpack  --mode production",
+    "build:w": "webpack --mode development --watch",
+    "build:dev": "webpack --mode development",
+    "start": "webpack serve --mode development --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -10,6 +10,10 @@ module.exports = {
         test: /\.ts?$/i,
         exclude: /node_modules/,
         use: `ts-loader`
+      },
+      {
+        test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
+        type: `asset / resource`
       }
     ]
   },
@@ -25,11 +29,12 @@ module.exports = {
       template: `./src/index.html`,
       inject: `body`
     })
+    // new FaviconsWebpackPlugin("./src/favicon.ico")
   ],
   devServer: {
     static: `./dist`,
     compress: true,
-    port: 8080,
+    port: 8081,
     hot: true
   }
 };
