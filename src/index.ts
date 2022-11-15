@@ -176,6 +176,12 @@ window.addEventListener(`resize`, function () {
   winW = window.innerWidth;
   update();
 });
+window.addEventListener(`orientationchange`, function () {
+  //Update global values
+  winH = window.innerHeight;
+  winW = window.innerWidth;
+  update();
+});
 
 //############################Functions#############################
 // Load weather data
