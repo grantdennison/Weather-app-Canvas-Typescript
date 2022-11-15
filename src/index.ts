@@ -169,6 +169,10 @@ const day3 = new Tile(
 );
 update();
 
+//####################################Click//////////////////////////
+canvas.addEventListener(`click`, function () {
+  updateText();
+});
 //Window resize event setup////
 window.addEventListener(`resize`, function () {
   //Update global values
@@ -186,8 +190,6 @@ async function loadWeather() {
     save(`weather`, weather);
   }
   ///#######Update text######
-  console.log(weather);
-  console.log(`1313131313`, weather.temperature);
   //Current Day
   tileTextDayCur.temperature = weather.temperature;
   tileTextDayCur.wind = weather.wind;
@@ -201,6 +203,31 @@ async function loadWeather() {
   // Day 3
   tileTextDay3.temperature = weather.forecast[2].temperature;
   tileTextDay3.wind = weather.forecast[2].wind;
+  update();
+}
+
+///update text
+function updateText(): void {
+  const days = [dayCur, day1, day2, day3];
+  if (dayCur.tileText.temperature.slice(-1) === `C`) {
+    ////##################change to F and mph
+    for (let i = 0; i < days.length; i++) {
+      let cel = parseFloat(days[i].tileText.temperature.slice(0, -3));
+      let fer = (cel * 9) / 5 + 32;
+      fer = cel>=0? f
+
+      days[i].tileText.temperature = `${fer} F`;
+    }
+  } else {
+    for (let i = 0; i < days.length; i++) {
+      ////##################change to C and km/h
+      let fer = parseFloat(days[i].tileText.temperature.slice(0, -3));
+      let cel = ((fer - 32) * 5) / 9;
+
+      days[i].tileText.temperature = `${cel} C`;
+    }
+  }
+
   update();
 }
 
@@ -245,9 +272,9 @@ function update(): void {
     dayCur.img2Y = tileCurH / 1.5;
     day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
     ///Image 3 x setting
-    dayCur.img3X = widthTile - 150;
+    dayCur.img3X = widthTile - 300;
     ///Image 3 y setting
-    dayCur.img3Y = tileCurH / 4;
+    dayCur.img3Y = tileCurH / 3;
 
     ///Text setting date
     dayCur.textX = day1.textX = day2.textX = day3.textX = widthTile - 100;
@@ -275,13 +302,13 @@ function update(): void {
     ///Image 1 x setting
     dayCur.img1X = day1.img1X = day2.img1X = day3.img1X = 0;
     ///Image 1 y setting
-    dayCur.img1Y = tileCurH / 2;
+    dayCur.img1Y = tileCurH / 2.3;
     day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2.5;
     ///Image 2 x setting
     dayCur.img2X = widthTile / 3;
     day1.img2X = day2.img2X = day3.img2X = 0;
     ///Image 2 y setting
-    dayCur.img2Y = tileCurH / 2;
+    dayCur.img2Y = tileCurH / 2.3;
     day1.img2Y = day2.img2Y = day3.img2Y = tileH / 1.15;
     ///Image 3 x setting
     dayCur.img3X = dayCur.img2X * 2;

@@ -61,7 +61,8 @@ export class Tile {
   }
 
   draw() {
-    context.globalAlpha = 0.3;
+    //###########################################Tiles setup#######################################
+    context.globalAlpha = 0.4;
     context.fillStyle = this.colour;
     context.fillRect(
       //x
@@ -74,7 +75,7 @@ export class Tile {
       this.tileH
     );
     context.beginPath();
-    context.lineWidth = 0.1;
+    context.lineWidth = 0.2;
     context.rect(
       //x
       this.x,
@@ -85,29 +86,48 @@ export class Tile {
       //height
       this.tileH
     );
+
+    // ####################################################Text editor##########################################
+
     context.stroke();
     context.globalAlpha = 1;
     context.strokeStyle = `black`;
     context.fillStyle = `white`;
-    context.lineWidth = 3;
+    context.lineWidth = 4;
     ///Day
     context.font = "italic  30px LatoWeb";
     context.strokeText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     context.fillText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
-    ////Dte
+    ////Date
     context.font = "italic  18px LatoWeb";
+    context.strokeText(this.date[1], this.textX + this.x, this.textY + this.y);
+    context.fillText(this.date[1], this.textX + this.x, this.textY + this.y);
+    ////Temp
+    context.font = "italic  40px LatoWeb";
     context.strokeText(
-      `${this.date[1]}`,
-      this.textX + this.x,
-      this.textY + this.y
+      this.tileText.temperature,
+      this.x + this.img1X + 75,
+      this.y + this.img1Y + 50
     );
     context.fillText(
-      `${this.date[1]}`,
-      this.textX + this.x,
-      this.textY + this.y
+      this.tileText.temperature,
+      this.x + this.img1X + 75,
+      this.y + this.img1Y + 50
+    );
+    ////wind
+    context.font = "italic  40px LatoWeb";
+    context.strokeText(
+      this.tileText.wind,
+      this.x + this.img2X + 75,
+      this.y + this.img2Y + 50
+    );
+    context.fillText(
+      this.tileText.wind,
+      this.x + this.img2X + 75,
+      this.y + this.img2Y + 50
     );
 
-    ///images
+    ///############################################images#########################
     context.drawImage(thermo, this.x + this.img1X, this.y + this.img1Y, 60, 60);
     context.drawImage(wind, this.x + this.img2X, this.y + this.img2Y, 60, 60);
     if (this.img3X && this.img3Y) {
@@ -117,6 +137,19 @@ export class Tile {
         this.y + this.img3Y,
         100,
         100
+      );
+      ////Description
+
+      context.font = "italic  30px LatoWeb";
+      context.strokeText(
+        this.tileText.description,
+        this.x + this.img3X + 120,
+        this.y + this.img3Y + 60
+      );
+      context.fillText(
+        this.tileText.description,
+        this.x + this.img3X + 120,
+        this.y + this.img3Y + 60
       );
     }
   }
