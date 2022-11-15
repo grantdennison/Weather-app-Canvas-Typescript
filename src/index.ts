@@ -4,20 +4,12 @@ const canvas = <HTMLCanvasElement>document.getElementById(`canvas1`);
 export const context: any = canvas.getContext(`2d`);
 
 //Images
-export const cloudy: HTMLImageElement = new Image();
-export const rain: HTMLImageElement = new Image();
 export const sun: HTMLImageElement = new Image();
 export const thermo: HTMLImageElement = new Image();
 export const wind: HTMLImageElement = new Image();
 
-const imagePath = [
-  `./img/cloudy.png`,
-  `./img/rain.png`,
-  `./img/sun.png`,
-  `./img/thermo.png`,
-  `./img/wind.png`
-];
-const images = [cloudy, rain, sun, thermo, wind];
+const imagePath = [`./img/sun.png`, `./img/thermo.png`, `./img/wind.png`];
+const images = [sun, thermo, wind];
 var imageCount = 0; // number of loaded images;
 
 // iterate each image path
@@ -47,6 +39,8 @@ let img2X: number = winW - winW / 1.2 / 2;
 let img2Y: number = tileH / 2.2;
 let img3X: number = 0;
 let img3Y: number = 0;
+let img3TX: number = 1;
+let img3TY: number = 1;
 
 interface Date {
   day: any;
@@ -123,7 +117,9 @@ const dayCur = new Tile(
   img2X,
   img2Y,
   img3X,
-  img3Y
+  img3Y,
+  img3TX,
+  img3TY
 );
 const day1 = new Tile(
   winW - winW / 1.2 / 2,
@@ -217,7 +213,6 @@ function updateText(): void {
 
       let kmh = parseFloat(days[i].tileText.wind.slice(0, -5));
       let mph = Math.round(kmh * 0.621371);
-      console.log(mph, kmh);
 
       days[i].tileText.temperature = `${fer} °F`;
       days[i].tileText.wind = `${mph} mph`;
@@ -242,6 +237,9 @@ function updateText(): void {
 
 ///Canva update for any changes
 function update(): void {
+  dayCur.img3TX = 110;
+  dayCur.img3TY = 60;
+
   let widthTile: number;
   canvas.width = winW;
   if (winH < 650) winH = 650;
@@ -250,7 +248,7 @@ function update(): void {
   topH = (winH - tileCurH - tileH * 3) / 2;
 
   if (winW < 1000) {
-    if (winW < 350) winW = 350;
+    if (winW < 400) winW = 400;
     widthTile = winW / 1.2;
     //canvas setting
     canvas.width = winW;
@@ -280,11 +278,21 @@ function update(): void {
     ///Image 2 y setting
     dayCur.img2Y = tileCurH / 1.5;
     day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
-    ///Image 3 x setting
-    dayCur.img3X = widthTile - 300;
-    ///Image 3 y setting
-    dayCur.img3Y = tileCurH / 3;
-
+    if (winW > 570) {
+      ///Image 3 x setting
+      dayCur.img3X = widthTile - 300;
+      ///Image 3 y setting
+      dayCur.img3Y = tileCurH / 3;
+    } else {
+      ///Image 3 x setting
+      dayCur.img3X = widthTile - 140;
+      ///Image 3 y setting
+      dayCur.img3Y = tileCurH / 4.3;
+      //Image text x setting
+      dayCur.img3TX = 10;
+      //Image text y setting
+      dayCur.img3TY = 130;
+    }
     ///Text setting date
     dayCur.textX = day1.textX = day2.textX = day3.textX = widthTile - 100;
     dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
