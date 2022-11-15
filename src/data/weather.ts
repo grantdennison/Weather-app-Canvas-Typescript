@@ -25,7 +25,7 @@ interface Weather {
 
 //Save data to local storage
 export function save(key: string, data: object) {
-  const expiry: number = Date.now() + 1000;
+  const expiry: number = Date.now() + 1000 * 60 * 15;
   const obj: { value: object; expiry: number } = {
     value: data,
     expiry: expiry
