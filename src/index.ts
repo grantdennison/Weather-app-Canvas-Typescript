@@ -213,18 +213,27 @@ function updateText(): void {
     ////##################change to F and mph
     for (let i = 0; i < days.length; i++) {
       let cel = parseFloat(days[i].tileText.temperature.slice(0, -3));
-      let fer = (cel * 9) / 5 + 32;
-      fer = cel>=0? f
+      let fer = Math.round((cel * 9) / 5 + 32);
 
-      days[i].tileText.temperature = `${fer} F`;
+      let kmh = parseFloat(days[i].tileText.wind.slice(0, -5));
+      let mph = Math.round(kmh * 0.621371);
+      console.log(mph, kmh);
+
+      days[i].tileText.temperature = `${fer} °F`;
+      days[i].tileText.wind = `${mph} mph`;
     }
   } else {
     for (let i = 0; i < days.length; i++) {
       ////##################change to C and km/h
       let fer = parseFloat(days[i].tileText.temperature.slice(0, -3));
-      let cel = ((fer - 32) * 5) / 9;
+      let cel = Math.round(((fer - 32) * 5) / 9);
 
-      days[i].tileText.temperature = `${cel} C`;
+      let mph = parseFloat(days[i].tileText.wind.slice(0, -4));
+      let kmh = Math.round(mph / 0.621371);
+      days[i].tileText.temperature = `${fer > 32 ? `+` : `-`}${
+        cel < 0 ? cel * -1 : cel * 1
+      } °C`;
+      days[i].tileText.wind = `${kmh} km/h`;
     }
   }
 
