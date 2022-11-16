@@ -105,11 +105,11 @@ export class Tile {
     context.strokeText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     context.fillText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     ////Date
-    context.font = "italic  18px LatoWeb";
+    context.font = "italic  22px LatoWeb";
     context.strokeText(this.date[1], this.textX + this.x, this.textY + this.y);
     context.fillText(this.date[1], this.textX + this.x, this.textY + this.y);
     ////Temp
-    context.font = "italic  35px LatoWeb";
+    context.font = "italic  33px LatoWeb";
     context.strokeText(
       this.tileText.temperature,
       this.x + this.img1X + 50,
@@ -121,7 +121,7 @@ export class Tile {
       this.y + this.img1Y + 50
     );
     ////wind
-    context.font = "italic  35px LatoWeb";
+    context.font = "italic  33px LatoWeb";
     context.strokeText(
       this.tileText.wind,
       this.x + this.img2X + 60,
