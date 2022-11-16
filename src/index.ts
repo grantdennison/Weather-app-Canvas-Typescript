@@ -172,8 +172,15 @@ canvas.addEventListener(`click`, function () {
 //Window resize event setup////
 window.addEventListener(`resize`, function () {
   //Update global values
-  winH = window.innerHeight;
-  winW = window.innerWidth;
+  if (screen.width < 500) {
+    winW = screen.width;
+    winH = screen.height;
+  } else {
+    winH = window.innerHeight;
+    winW = window.innerWidth;
+  }
+
+  console.log(`resize event`);
   update();
 });
 
@@ -181,7 +188,7 @@ window.addEventListener(`resize`, function () {
 // Load weather data
 async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
-  if (!weather) {
+  if (weather === false) {
     weather = await loadServer();
     save(`weather`, weather);
   }
@@ -201,7 +208,6 @@ async function loadWeather() {
   tileTextDay3.wind = weather.forecast[2].wind;
   updateText();
   updateText();
-  update();
 }
 
 ///update text
@@ -357,6 +363,7 @@ function update(): void {
 
     dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
   }
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
   dayCur.draw();
   day1.draw();

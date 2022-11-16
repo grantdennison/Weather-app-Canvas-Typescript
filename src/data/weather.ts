@@ -40,9 +40,10 @@ export function loadLocal(key: string) {
     const data: { value: object; expiry?: number } = JSON.parse(dataStr);
     if (data.expiry && data.expiry > Date.now()) {
       return data.value;
+    } else {
+      return false;
     }
   }
-  return false;
 }
 
 //get data from server

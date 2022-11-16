@@ -68,6 +68,7 @@ export class Tile {
 
   draw() {
     //###########################################Tiles setup#######################################
+
     context.globalAlpha = 0.4;
     context.fillStyle = this.colour;
     context.fillRect(
