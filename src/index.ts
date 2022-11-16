@@ -175,7 +175,7 @@ window.addEventListener(`resize`, function () {
   if (screen.width < 500) {
     winW = screen.width;
     winH = screen.height;
-    alert(`rotation test`);
+    updateText();
   } else {
     winH = window.innerHeight;
     winW = window.innerWidth;
