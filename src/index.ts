@@ -175,6 +175,7 @@ window.addEventListener(`resize`, function () {
   if (screen.width < 500) {
     winW = screen.width;
     winH = screen.height;
+    alert(`rotation test`);
   } else {
     winH = window.innerHeight;
     winW = window.innerWidth;
@@ -184,15 +185,15 @@ window.addEventListener(`resize`, function () {
   update();
 });
 
-canvas.addEventListener(`orientation`, function () {
-  if (screen.width < 500) {
-    winW = screen.width;
-    winH = screen.height;
-  } else {
-    winH = window.innerHeight;
-    winW = window.innerWidth;
-  }
-});
+// canvas.addEventListener(`orientation`, function () {
+//   if (screen.width < 500) {
+//     winW = screen.width;
+//     winH = screen.height;
+//   } else {
+//     winH = window.innerHeight;
+//     winW = window.innerWidth;
+//   }
+// });
 
 //############################Functions#############################
 // Load weather data
