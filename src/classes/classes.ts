@@ -105,7 +105,7 @@ export class Tile {
     context.strokeText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     context.fillText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     ////Date
-    context.font = "italic  22px LatoWeb";
+    context.font = "italic  18px LatoWeb";
     context.strokeText(this.date[1], this.textX + this.x, this.textY + this.y);
     context.fillText(this.date[1], this.textX + this.x, this.textY + this.y);
     ////Temp
