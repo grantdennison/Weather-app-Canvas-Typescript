@@ -184,7 +184,7 @@ window.addEventListener(`resize`, function () {
   update();
 });
 
-window.addEventListener(`orientationchange`, function () {
+screen.orientation.addEventListener(`change`, function () {
   updateText();
 
   if (screen.width < 500) {
