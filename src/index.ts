@@ -41,8 +41,7 @@ let img3X: number = 0;
 let img3Y: number = 0;
 let img3TX: number = 1;
 let img3TY: number = 1;
-let imageSizeX: number = 60;
-let imageSizeY: number = 60;
+let imageSize: number = 60;
 
 interface Date {
   day: any;
@@ -66,8 +65,7 @@ const tileTextDay1: Date = {
   day: new Date(new Date().getTime() + 86400000).toLocaleDateString(`default`, {
     weekday: `long`,
     day: `2-digit`,
-    month: `short`,
-    year: `numeric`
+    month: `short`
   }),
   temperature: `0 °C `,
   wind: `0 km/h`
@@ -78,8 +76,7 @@ const tileTextDay2: Date = {
     {
       weekday: `long`,
       day: `2-digit`,
-      month: `short`,
-      year: `numeric`
+      month: `short`
     }
   ),
   temperature: `0 °C `,
@@ -91,8 +88,7 @@ const tileTextDay3: Date = {
     {
       weekday: `long`,
       day: `2-digit`,
-      month: `short`,
-      year: `numeric`
+      month: `short`
     }
   ),
   temperature: `0 °C `,
@@ -122,8 +118,7 @@ const dayCur = new Tile(
   img3Y,
   img3TX,
   img3TY,
-  imageSizeX,
-  imageSizeY
+  imageSize
 );
 const day1 = new Tile(
   winW - winW / 1.2 / 2,
@@ -142,8 +137,7 @@ const day1 = new Tile(
   (img3TY = 0),
   (img3TX = 0),
   (img3TY = 0),
-  imageSizeX,
-  imageSizeY
+  imageSize
 );
 const day2 = new Tile(
   winW - winW / 1.2 / 2,
@@ -162,8 +156,7 @@ const day2 = new Tile(
   (img3TY = 0),
   (img3TX = 0),
   (img3TY = 0),
-  imageSizeX,
-  imageSizeY
+  imageSize
 );
 const day3 = new Tile(
   winW - winW / 1.2 / 2,
@@ -182,8 +175,7 @@ const day3 = new Tile(
   0,
   0,
   0,
-  imageSizeX,
-  imageSizeY
+  imageSize
 );
 //#################################Device type#############################
 const checkType = () => {
@@ -436,6 +428,7 @@ const mobileUpdate = () => {
     // dayCur.textX = day1.textX = day2.textX = day3.textX = dayCur.divW - 400;
 
     /////////////////Image setttings////////////////////////
+    day1.imageSize = day2.imageSize = day3.imageSize = 50;
     ///Image 1 x setting
     dayCur.img1X = day1.img1X = day2.img1X = day3.img1X = 0;
     ///Image 1 y setting
@@ -462,10 +455,9 @@ const mobileUpdate = () => {
   } else {
     //###########################Landscape
     //##############great screens########
-    tileH = winH / 5;
-    tileCurH = tileH * 3;
-    tileH = tileH * 2;
-
+    tileH = winH / 7;
+    tileCurH = tileH * 4;
+    tileH = tileH * 3;
     //height seting
     dayCur.tileH = tileCurH;
     day1.tileH = day2.tileH = day3.tileH = tileH;
@@ -481,17 +473,18 @@ const mobileUpdate = () => {
     day2.x = day1.x + day1.divW;
     day3.x = day2.x + day2.divW;
     /////////////////Image setttings////////////////////////
+    day1.imageSize = day2.imageSize = day3.imageSize = 40;
     ///Image 1 x setting
     dayCur.img1X = day1.img1X = day2.img1X = day3.img1X = 0;
     ///Image 1 y setting
     dayCur.img1Y = tileCurH / 2.3;
-    day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2.5;
+    day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2;
     ///Image 2 x setting
-    dayCur.img2X = widthTile / 3;
+    dayCur.img2X = widthTile / 3.5;
     day1.img2X = day2.img2X = day3.img2X = day1.divW / 2;
     ///Image 2 y setting
     dayCur.img2Y = tileCurH / 2.3;
-    day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2.5;
+    day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
     ///Image 3 x setting
     dayCur.img3X = dayCur.img2X * 2;
     ///Image 3 y setting
@@ -499,9 +492,13 @@ const mobileUpdate = () => {
 
     ///Text setting date
     dayCur.textX = widthTile - 100;
-    day1.textX = day2.textX = day3.textX = widthTile / 3 - 100;
+    day1.textX = day2.textX = day3.textX = widthTile / 3 - 10;
 
     dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
+
+    ///Image 3 text seetting
+    dayCur.img3TX = 200;
+    dayCur.img3TY = 70;
   }
   context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 

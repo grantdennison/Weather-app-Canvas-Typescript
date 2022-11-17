@@ -22,8 +22,7 @@ export class Tile {
   public img3Y?: number;
   public img3TX?: number;
   public img3TY?: number;
-  public imageSizeX?: number;
-  public imageSizeY?: number;
+  public imageSize?: number;
   public date: string[];
 
   constructor(
@@ -48,8 +47,7 @@ export class Tile {
     img3Y?: number,
     img3TX?: number,
     img3TY?: number,
-    imageSizeX?: number,
-    imageSizeY?: number
+    imageSize?: number
   ) {
     this.x = x;
     this.y = y;
@@ -67,8 +65,7 @@ export class Tile {
     this.img3Y = img3Y;
     this.img3TX = img3TX;
     this.img3TY = img3TY;
-    this.imageSizeX = imageSizeX;
-    this.imageSizeY = imageSizeY;
+    this.imageSize = imageSize;
     this.date = this.tileText.day.split(`, `);
   }
 
@@ -123,24 +120,24 @@ export class Tile {
     context.strokeText(
       this.tileText.temperature,
       this.x + this.img1X + 50,
-      this.y + this.img1Y + 50
+      this.y + this.img1Y + 45
     );
     context.fillText(
       this.tileText.temperature,
       this.x + this.img1X + 50,
-      this.y + this.img1Y + 50
+      this.y + this.img1Y + 45
     );
     ////wind
     context.font = "italic  33px LatoWeb";
     context.strokeText(
       this.tileText.wind,
       this.x + this.img2X + 60,
-      this.y + this.img2Y + 50
+      this.y + this.img2Y + 45
     );
     context.fillText(
       this.tileText.wind,
       this.x + this.img2X + 60,
-      this.y + this.img2Y + 50
+      this.y + this.img2Y + 45
     );
 
     ///############################################images#########################
@@ -148,15 +145,15 @@ export class Tile {
       thermo,
       this.x + this.img1X,
       this.y + this.img1Y,
-      this.imageSizeX,
-      this.imageSizeY
+      this.imageSize,
+      this.imageSize
     );
     context.drawImage(
       wind,
       this.x + this.img2X,
       this.y + this.img2Y,
-      this.imageSizeX,
-      this.imageSizeY
+      this.imageSize,
+      this.imageSize
     );
     if (this.img3X && this.img3Y && this.img3TX && this.img3TY) {
       context.drawImage(
