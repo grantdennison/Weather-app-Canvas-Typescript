@@ -22,6 +22,8 @@ export class Tile {
   public img3Y?: number;
   public img3TX?: number;
   public img3TY?: number;
+  public imageSizeX?: number;
+  public imageSizeY?: number;
   public date: string[];
 
   constructor(
@@ -45,7 +47,9 @@ export class Tile {
     img3X?: number,
     img3Y?: number,
     img3TX?: number,
-    img3TY?: number
+    img3TY?: number,
+    imageSizeX?: number,
+    imageSizeY?: number
   ) {
     this.x = x;
     this.y = y;
@@ -63,6 +67,8 @@ export class Tile {
     this.img3Y = img3Y;
     this.img3TX = img3TX;
     this.img3TY = img3TY;
+    this.imageSizeX = imageSizeX;
+    this.imageSizeY = imageSizeY;
     this.date = this.tileText.day.split(`, `);
   }
 
@@ -96,20 +102,23 @@ export class Tile {
 
     // ####################################################Text editor##########################################
 
+    context.textAlign = "left";
     context.stroke();
     context.globalAlpha = 1;
     context.strokeStyle = `black`;
     context.fillStyle = `white`;
     context.lineWidth = 4;
     ///Day
-    context.font = "italic  30px LatoWeb";
+    context.font = "italic  35px LatoWeb";
     context.strokeText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     context.fillText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
     ////Date
-    context.font = "italic  18px LatoWeb";
+    context.textAlign = "right";
+    context.font = "italic  25px LatoWeb";
     context.strokeText(this.date[1], this.textX + this.x, this.textY + this.y);
     context.fillText(this.date[1], this.textX + this.x, this.textY + this.y);
     ////Temp
+    context.textAlign = "left";
     context.font = "italic  33px LatoWeb";
     context.strokeText(
       this.tileText.temperature,
@@ -135,8 +144,20 @@ export class Tile {
     );
 
     ///############################################images#########################
-    context.drawImage(thermo, this.x + this.img1X, this.y + this.img1Y, 60, 60);
-    context.drawImage(wind, this.x + this.img2X, this.y + this.img2Y, 60, 60);
+    context.drawImage(
+      thermo,
+      this.x + this.img1X,
+      this.y + this.img1Y,
+      this.imageSizeX,
+      this.imageSizeY
+    );
+    context.drawImage(
+      wind,
+      this.x + this.img2X,
+      this.y + this.img2Y,
+      this.imageSizeX,
+      this.imageSizeY
+    );
     if (this.img3X && this.img3Y && this.img3TX && this.img3TY) {
       context.drawImage(
         sun,
@@ -148,6 +169,8 @@ export class Tile {
       ////Description
 
       context.font = "italic  30px LatoWeb";
+      context.textAlign = "center";
+
       context.strokeText(
         this.tileText.description,
         this.x + this.img3X + this.img3TX,

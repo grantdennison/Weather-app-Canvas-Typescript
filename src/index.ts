@@ -41,6 +41,8 @@ let img3X: number = 0;
 let img3Y: number = 0;
 let img3TX: number = 1;
 let img3TY: number = 1;
+let imageSizeX: number = 60;
+let imageSizeY: number = 60;
 
 interface Date {
   day: any;
@@ -119,7 +121,9 @@ const dayCur = new Tile(
   img3X,
   img3Y,
   img3TX,
-  img3TY
+  img3TY,
+  imageSizeX,
+  imageSizeY
 );
 const day1 = new Tile(
   winW - winW / 1.2 / 2,
@@ -133,7 +137,13 @@ const day1 = new Tile(
   img1X,
   img1Y,
   img2X,
-  img2Y
+  img2Y,
+  (img3TX = 0),
+  (img3TY = 0),
+  (img3TX = 0),
+  (img3TY = 0),
+  imageSizeX,
+  imageSizeY
 );
 const day2 = new Tile(
   winW - winW / 1.2 / 2,
@@ -147,7 +157,13 @@ const day2 = new Tile(
   img1X,
   img1Y,
   img2X,
-  img2Y
+  img2Y,
+  (img3TX = 0),
+  (img3TY = 0),
+  (img3TX = 0),
+  (img3TY = 0),
+  imageSizeX,
+  imageSizeY
 );
 const day3 = new Tile(
   winW - winW / 1.2 / 2,
@@ -161,39 +177,40 @@ const day3 = new Tile(
   img1X,
   img1Y,
   img2X,
-  img2Y
+  img2Y,
+  0,
+  0,
+  0,
+  0,
+  imageSizeX,
+  imageSizeY
 );
-update();
-
+//#################################Device type#############################
+const checkType = () => {
+  const ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    return "tablet";
+  } else if (
+    /Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+      ua
+    )
+  ) {
+    return "mobile";
+  }
+  return "desktop";
+};
+const deviceType = checkType();
 //####################################Click//////////////////////////
 canvas.addEventListener(`click`, function () {
   updateText();
 });
 //Window resize event setup////
 window.addEventListener(`resize`, function () {
-  //Update global values
-  if (screen.width < 500) {
-    winW = screen.width;
-    winH = screen.height;
-  } else {
-    winH = window.innerHeight;
-    winW = window.innerWidth;
-  }
-
-  console.log(`resize event`);
   update();
 });
 
 screen.orientation.addEventListener(`change`, function () {
-  updateText();
-
-  if (screen.width < 500) {
-    winW = screen.width;
-    winH = screen.height;
-  } else {
-    winH = window.innerHeight;
-    winW = window.innerWidth;
-  }
+  update;
 });
 
 //############################Functions#############################
@@ -274,27 +291,140 @@ function updateText(): void {
 
 ///Canva update for any changes
 function update(): void {
-  dayCur.img3TX = 110;
-  dayCur.img3TY = 60;
+  if (deviceType === `mobile`) mobileUpdate();
+  else if (deviceType === `tablet`) tabletUpdate();
+  else {
+    winH = window.innerHeight;
+    winW = window.innerWidth;
 
-  let widthTile: number;
-  canvas.width = winW;
-  if (winH < 650) winH = 650;
+    dayCur.img3TX = 110;
+    dayCur.img3TY = 60;
 
-  canvas.height = winH;
-  topH = (winH - tileCurH - tileH * 3) / 2;
-
-  if (winW < 1000) {
-    if (winW < 400) winW = 400;
-    widthTile = winW / 1.2;
-    //canvas setting
+    let widthTile: number;
     canvas.width = winW;
+    if (winH < 650) winH = 650;
 
+    canvas.height = winH;
+    topH = (winH - tileCurH - tileH * 3) / 2;
+
+    if (winW < 1000) {
+      if (winW < 400) winW = 400;
+      widthTile = winW / 1.2;
+      //canvas setting
+      canvas.width = winW;
+
+      // width setting
+      dayCur.divW = day1.divW = day2.divW = day3.divW = widthTile;
+      //height seting
+      day1.tileH = day2.tileH = day3.tileH = tileH;
+      // y setting
+      dayCur.y = topH;
+      day1.y = topH + tileCurH;
+      day2.y = topH + tileH + tileCurH;
+      day3.y = topH + tileH * 2 + tileCurH;
+
+      //x setting
+      dayCur.x = day1.x = day2.x = day3.x = (winW - widthTile) / 2;
+
+      /////////////////Image setttings////////////////////////
+      ///Image 1 x setting
+      dayCur.img1X = day1.img1X = day2.img1X = day3.img1X = 0;
+      ///Image 1 y setting
+      dayCur.img1Y = tileCurH / 3;
+      day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2;
+      ///Image 2 x setting
+      dayCur.img2X = 0;
+      day1.img2X = day2.img2X = day3.img2X = winW / 2.5;
+      ///Image 2 y setting
+      dayCur.img2Y = tileCurH / 1.5;
+      day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
+      if (winW > 570) {
+        ///Image 3 x setting
+        dayCur.img3X = widthTile - 300;
+        ///Image 3 y setting
+        dayCur.img3Y = tileCurH / 3;
+      } else {
+        ///Image 3 x setting
+        dayCur.img3X = widthTile - 140;
+        ///Image 3 y setting
+        dayCur.img3Y = tileCurH / 4.3;
+        //Image text x setting
+        dayCur.img3TX = 10;
+        //Image text y setting
+        dayCur.img3TY = 130;
+      }
+      ///Text setting date
+      dayCur.textX = day1.textX = day2.textX = day3.textX = widthTile - 100;
+      dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
+    } else {
+      //##############great screens########
+      topH = (winH - tileCurH - tileH) / 2;
+      ////tile width
+
+      widthTile = winW > 1300 ? 1300 / 1.2 : winW / 1.2;
+      //height seting
+      day1.tileH = day2.tileH = day3.tileH = tileCurH;
+      // width settin
+      dayCur.divW = widthTile;
+      day1.divW = day2.divW = day3.divW = widthTile / 3;
+      // y setting
+      dayCur.y = topH;
+      day1.y = day2.y = day3.y = topH + tileCurH;
+
+      //x setting
+      dayCur.x = day1.x = (winW - widthTile) / 2;
+      day2.x = day1.x + day1.divW;
+      day3.x = day2.x + day2.divW;
+      /////////////////Image setttings////////////////////////
+      ///Image 1 x setting
+      dayCur.img1X = day1.img1X = day2.img1X = day3.img1X = 0;
+      ///Image 1 y setting
+      dayCur.img1Y = tileCurH / 2.3;
+      day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2.5;
+      ///Image 2 x setting
+      dayCur.img2X = widthTile / 3;
+      day1.img2X = day2.img2X = day3.img2X = 0;
+      ///Image 2 y setting
+      dayCur.img2Y = tileCurH / 2.3;
+      day1.img2Y = day2.img2Y = day3.img2Y = tileH / 1.15;
+      ///Image 3 x setting
+      dayCur.img3X = dayCur.img2X * 2;
+      ///Image 3 y setting
+      dayCur.img3Y = tileCurH / 3;
+
+      ///Text setting date
+      dayCur.textX = widthTile - 100;
+      day1.textX = day2.textX = day3.textX = widthTile / 3 - 100;
+
+      dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
+    }
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+
+    dayCur.draw();
+    day1.draw();
+    day2.draw();
+    day3.draw();
+  }
+}
+
+const mobileUpdate = () => {
+  //################################portrate######################
+  winW = screen.availWidth - 10;
+  winH = screen.availHeight - 10;
+  //canvas setting
+  canvas.width = winW;
+  canvas.height = winH;
+  topH = 5;
+  let widthTile: number = winW;
+  if (screen.width < screen.height) {
+    tileH = winH / 5;
     // width setting
     dayCur.divW = day1.divW = day2.divW = day3.divW = widthTile;
     //height seting
+    dayCur.tileH = tileH * 2;
     day1.tileH = day2.tileH = day3.tileH = tileH;
     // y setting
+    tileCurH = tileH * 2;
     dayCur.y = topH;
     day1.y = topH + tileCurH;
     day2.y = topH + tileH + tileCurH;
@@ -302,6 +432,8 @@ function update(): void {
 
     //x setting
     dayCur.x = day1.x = day2.x = day3.x = (winW - widthTile) / 2;
+    ///Text setting date
+    // dayCur.textX = day1.textX = day2.textX = day3.textX = dayCur.divW - 400;
 
     /////////////////Image setttings////////////////////////
     ///Image 1 x setting
@@ -311,36 +443,32 @@ function update(): void {
     day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2;
     ///Image 2 x setting
     dayCur.img2X = 0;
-    day1.img2X = day2.img2X = day3.img2X = winW / 2.5;
+    day1.img2X = day2.img2X = day3.img2X = winW / 2;
     ///Image 2 y setting
     dayCur.img2Y = tileCurH / 1.5;
     day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
-    if (winW > 570) {
-      ///Image 3 x setting
-      dayCur.img3X = widthTile - 300;
-      ///Image 3 y setting
-      dayCur.img3Y = tileCurH / 3;
-    } else {
-      ///Image 3 x setting
-      dayCur.img3X = widthTile - 140;
-      ///Image 3 y setting
-      dayCur.img3Y = tileCurH / 4.3;
-      //Image text x setting
-      dayCur.img3TX = 10;
-      //Image text y setting
-      dayCur.img3TY = 130;
-    }
-    ///Text setting date
-    dayCur.textX = day1.textX = day2.textX = day3.textX = widthTile - 100;
-    dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
-  } else {
-    //##############great screens########
-    topH = (winH - tileCurH - tileH) / 2;
-    ////tile width
 
-    widthTile = winW > 1300 ? 1300 / 1.2 : winW / 1.2;
+    ///Image 3 x setting
+    dayCur.img3X = widthTile - 160;
+    ///Image 3 y setting
+    dayCur.img3Y = tileCurH / 2.8;
+    //Image text x setting
+    dayCur.img3TX = 50;
+    //Image text y setting
+    dayCur.img3TY = 160;
+
+    ///Text setting date
+    dayCur.textX = day1.textX = day2.textX = day3.textX = widthTile - 20;
+  } else {
+    //###########################Landscape
+    //##############great screens########
+    tileH = winH / 5;
+    tileCurH = tileH * 3;
+    tileH = tileH * 2;
+
     //height seting
-    day1.tileH = day2.tileH = day3.tileH = tileCurH;
+    dayCur.tileH = tileCurH;
+    day1.tileH = day2.tileH = day3.tileH = tileH;
     // width settin
     dayCur.divW = widthTile;
     day1.divW = day2.divW = day3.divW = widthTile / 3;
@@ -360,10 +488,10 @@ function update(): void {
     day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2.5;
     ///Image 2 x setting
     dayCur.img2X = widthTile / 3;
-    day1.img2X = day2.img2X = day3.img2X = 0;
+    day1.img2X = day2.img2X = day3.img2X = day1.divW / 2;
     ///Image 2 y setting
     dayCur.img2Y = tileCurH / 2.3;
-    day1.img2Y = day2.img2Y = day3.img2Y = tileH / 1.15;
+    day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2.5;
     ///Image 3 x setting
     dayCur.img3X = dayCur.img2X * 2;
     ///Image 3 y setting
@@ -381,4 +509,13 @@ function update(): void {
   day1.draw();
   day2.draw();
   day3.draw();
-}
+};
+const tabletUpdate = () => {
+  if (screen.width < screen.height) {
+    //################################portrate######################
+  } else {
+    //###########################Landscape
+  }
+};
+
+update();
