@@ -24,6 +24,7 @@ export class Tile {
   public img3TY?: number;
   public imageSize?: number;
   public date: string[];
+  public offSet: number;
 
   constructor(
     x: number,
@@ -43,6 +44,7 @@ export class Tile {
     img1Y: number,
     img2X: number,
     img2Y: number,
+    offSet: number,
     img3X?: number,
     img3Y?: number,
     img3TX?: number,
@@ -66,6 +68,7 @@ export class Tile {
     this.img3TX = img3TX;
     this.img3TY = img3TY;
     this.imageSize = imageSize;
+    this.offSet = offSet;
     this.date = this.tileText.day.split(`, `);
   }
 
@@ -120,24 +123,24 @@ export class Tile {
     context.strokeText(
       this.tileText.temperature,
       this.x + this.img1X + 50,
-      this.y + this.img1Y + 45
+      this.y + this.img1Y + 45 - this.offSet
     );
     context.fillText(
       this.tileText.temperature,
       this.x + this.img1X + 50,
-      this.y + this.img1Y + 45
+      this.y + this.img1Y + 45 - this.offSet
     );
     ////wind
     context.font = "italic  33px LatoWeb";
     context.strokeText(
       this.tileText.wind,
       this.x + this.img2X + 60,
-      this.y + this.img2Y + 45
+      this.y + this.img2Y + 45 - this.offSet
     );
     context.fillText(
       this.tileText.wind,
       this.x + this.img2X + 60,
-      this.y + this.img2Y + 45
+      this.y + this.img2Y + 45 - this.offSet
     );
 
     ///############################################images#########################

@@ -37,6 +37,7 @@ let img1X: number = 0;
 let img1Y: number = tileH / 2.2;
 let img2X: number = winW - winW / 1.2 / 2;
 let img2Y: number = tileH / 2.2;
+let offSet: number = 0;
 let img3X: number = 0;
 let img3Y: number = 0;
 let img3TX: number = 1;
@@ -114,6 +115,7 @@ const dayCur = new Tile(
   img1Y,
   img2X,
   img2Y,
+  offSet,
   img3X,
   img3Y,
   img3TX,
@@ -133,6 +135,7 @@ const day1 = new Tile(
   img1Y,
   img2X,
   img2Y,
+  offSet,
   (img3TX = 0),
   (img3TY = 0),
   (img3TX = 0),
@@ -152,6 +155,7 @@ const day2 = new Tile(
   img1Y,
   img2X,
   img2Y,
+  offSet,
   (img3TX = 0),
   (img3TY = 0),
   (img3TX = 0),
@@ -171,6 +175,7 @@ const day3 = new Tile(
   img1Y,
   img2X,
   img2Y,
+  offSet,
   0,
   0,
   0,
@@ -283,6 +288,7 @@ function updateText(): void {
 
 ///Canva update for any changes
 function update(): void {
+  day1.offSet = day2.offSet = day3.offSet = 0;
   if (deviceType === `mobile`) mobileUpdate();
   else if (deviceType === `tablet`) tabletUpdate();
   else {
@@ -403,6 +409,7 @@ const mobileUpdate = () => {
   //################################portrate######################
   winW = screen.availWidth - 10;
   winH = screen.availHeight - 10;
+  day1.offSet = day2.offSet = day3.offSet = 0;
   //canvas setting
   canvas.width = winW;
   canvas.height = winH;
@@ -474,17 +481,18 @@ const mobileUpdate = () => {
     day3.x = day2.x + day2.divW;
     /////////////////Image setttings////////////////////////
     day1.imageSize = day2.imageSize = day3.imageSize = 40;
+    day1.offSet = day2.offSet = day3.offSet = 15;
     ///Image 1 x setting
     dayCur.img1X = day1.img1X = day2.img1X = day3.img1X = 0;
     ///Image 1 y setting
     dayCur.img1Y = tileCurH / 2.3;
-    day1.img1Y = day2.img1Y = day3.img1Y = tileH / 2;
+    day1.img1Y = day2.img1Y = day3.img1Y = tileH / 3;
     ///Image 2 x setting
     dayCur.img2X = widthTile / 3.5;
-    day1.img2X = day2.img2X = day3.img2X = day1.divW / 2;
+    day1.img2X = day2.img2X = day3.img2X = 0;
     ///Image 2 y setting
     dayCur.img2Y = tileCurH / 2.3;
-    day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
+    day1.img2Y = day2.img2Y = day3.img2Y = (tileH / 3) * 2;
     ///Image 3 x setting
     dayCur.img3X = dayCur.img2X * 2;
     ///Image 3 y setting
