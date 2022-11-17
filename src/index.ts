@@ -215,6 +215,7 @@ screen.orientation.addEventListener(`change`, function () {
 async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
   if (weather === false) {
+    console.log(`Server`);
     weather = await loadServer();
     save(`weather`, weather);
   }
@@ -407,13 +408,13 @@ function update(): void {
 
 const mobileUpdate = () => {
   //################################portrate######################
-  winW = screen.availWidth - 10;
-  winH = screen.availHeight - 10;
+  winW = screen.availWidth - 20;
+  winH = screen.availHeight - 20;
   day1.offSet = day2.offSet = day3.offSet = 0;
   //canvas setting
   canvas.width = winW;
   canvas.height = winH;
-  topH = 5;
+  topH = 10;
   let widthTile: number = winW;
   if (screen.width < screen.height) {
     tileH = winH / 5;
@@ -430,7 +431,7 @@ const mobileUpdate = () => {
     day3.y = topH + tileH * 2 + tileCurH;
 
     //x setting
-    dayCur.x = day1.x = day2.x = day3.x = (winW - widthTile) / 2;
+    dayCur.x = day1.x = day2.x = day3.x = (winW - widthTile + 20) / 2;
     ///Text setting date
     // dayCur.textX = day1.textX = day2.textX = day3.textX = dayCur.divW - 400;
 
@@ -476,7 +477,7 @@ const mobileUpdate = () => {
     day1.y = day2.y = day3.y = topH + tileCurH;
 
     //x setting
-    dayCur.x = day1.x = (winW - widthTile) / 2;
+    dayCur.x = day1.x = (winW - widthTile + 15) / 2;
     day2.x = day1.x + day1.divW;
     day3.x = day2.x + day2.divW;
     /////////////////Image setttings////////////////////////
@@ -500,7 +501,7 @@ const mobileUpdate = () => {
 
     ///Text setting date
     dayCur.textX = widthTile - 100;
-    day1.textX = day2.textX = day3.textX = widthTile / 3 - 10;
+    day1.textX = day2.textX = day3.textX = widthTile / 3 - 20;
 
     dayCur.textY = day1.textY = day2.textY = day3.textY = 30;
 
