@@ -214,8 +214,9 @@ screen.orientation.addEventListener(`change`, function () {
 // Load weather data
 async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
+  alert(weather);
   if (weather === false) {
-    console.log(`Server`);
+    alert(`Server`);
     weather = await loadServer();
     save(`weather`, weather);
   }
