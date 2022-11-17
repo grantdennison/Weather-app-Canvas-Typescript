@@ -109,12 +109,12 @@ export class Tile {
     context.fillStyle = `white`;
     context.lineWidth = 4;
     ///Day
-    context.font = "italic  35px LatoWeb";
-    context.strokeText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
-    context.fillText(`${this.date[0]} ~`, 15 + this.x, 33 + this.y);
+    context.font = "italic  33px LatoWeb";
+    context.strokeText(`${this.date[0]} ~`, 10 + this.x, 33 + this.y);
+    context.fillText(`${this.date[0]} ~`, 10 + this.x, 33 + this.y);
     ////Date
     context.textAlign = "right";
-    context.font = "italic  25px LatoWeb";
+    context.font = "italic  20px LatoWeb";
     context.strokeText(this.date[1], this.textX + this.x, this.textY + this.y);
     context.fillText(this.date[1], this.textX + this.x, this.textY + this.y);
     ////Temp
