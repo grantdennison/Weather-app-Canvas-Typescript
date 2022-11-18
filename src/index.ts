@@ -51,7 +51,7 @@ interface Date {
   description?: string;
 }
 
-const tileTextDayCur: Date = {
+export const tileTextDayCur: Date = {
   day: new Date().toLocaleDateString(`default`, {
     weekday: `long`,
     day: `2-digit`,
@@ -62,7 +62,7 @@ const tileTextDayCur: Date = {
   wind: `0 km/h`,
   description: `Clear`
 };
-const tileTextDay1: Date = {
+export const tileTextDay1: Date = {
   day: new Date(new Date().getTime() + 86400000).toLocaleDateString(`default`, {
     weekday: `long`,
     day: `2-digit`,
@@ -71,7 +71,7 @@ const tileTextDay1: Date = {
   temperature: `0 °C `,
   wind: `0 km/h`
 };
-const tileTextDay2: Date = {
+export const tileTextDay2: Date = {
   day: new Date(new Date().getTime() + 86400000 * 2).toLocaleDateString(
     `default`,
     {
@@ -83,7 +83,7 @@ const tileTextDay2: Date = {
   temperature: `0 °C `,
   wind: `0 km/h`
 };
-const tileTextDay3: Date = {
+export const tileTextDay3: Date = {
   day: new Date(new Date().getTime() + 86400000 * 3).toLocaleDateString(
     `default`,
     {
@@ -102,7 +102,7 @@ loadWeather();
 canvas.width = winW;
 canvas.height = winH;
 ///Tile setup
-const dayCur = new Tile(
+export const dayCur = new Tile(
   winW - winW / 1.2 / 2,
   topH,
   tileCurH,
@@ -122,7 +122,7 @@ const dayCur = new Tile(
   img3TY,
   imageSize
 );
-const day1 = new Tile(
+export const day1 = new Tile(
   winW - winW / 1.2 / 2,
   topH + tileCurH,
   tileH,
@@ -142,7 +142,7 @@ const day1 = new Tile(
   (img3TY = 0),
   imageSize
 );
-const day2 = new Tile(
+export const day2 = new Tile(
   winW - winW / 1.2 / 2,
   topH + tileH + tileCurH,
   tileH,
@@ -162,7 +162,7 @@ const day2 = new Tile(
   (img3TY = 0),
   imageSize
 );
-const day3 = new Tile(
+export const day3 = new Tile(
   winW - winW / 1.2 / 2,
   topH + tileH * 2 + tileCurH,
   tileH,
@@ -212,7 +212,7 @@ screen.orientation.addEventListener(`change`, function () {
 
 //############################Functions#############################
 // Load weather data
-async function loadWeather() {
+export async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
   if (!weather) {
     weather = await loadServer();
@@ -237,7 +237,7 @@ async function loadWeather() {
 }
 
 ///update text
-function updateText(): void {
+export function updateText(): void {
   const days = [dayCur, day1, day2, day3];
   let fer, cel, kmh, mph;
   if (dayCur.tileText.temperature.slice(-1) === `C`) {
