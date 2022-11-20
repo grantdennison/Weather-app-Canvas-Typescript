@@ -629,3 +629,7 @@ const tabletUpdate = () => {
 };
 
 update();
+
+export function sub(a: number, b: number): any {
+  return a + b;
+}
