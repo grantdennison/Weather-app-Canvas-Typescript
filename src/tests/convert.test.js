@@ -1,6 +1,15 @@
+import { expect, jest, test } from "@jest/globals";
+/**
+ * @jest-environment jsdom
+ */
+
+test("use jsdom in this test file", () => {
+  const element = document.createElement("div");
+  expect(element).not.toBeNull();
+});
+
 import { sum } from "../bb";
 import { sub } from "../index";
-import { expect, jest, test } from "@jest/globals";
 
 test(`Add 1+ 2 to equal 3`, () => {
   expect(sum(1, 2)).toBe(3);
