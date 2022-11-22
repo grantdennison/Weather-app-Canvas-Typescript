@@ -167,7 +167,9 @@ const deviceType = checkType();
 // ###################################################################################
 
 canvas.addEventListener(`click`, function () {
+  console.log(`click event`);
   updateText();
+  update();
 });
 
 window.addEventListener(`resize`, function () {
