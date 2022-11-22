@@ -6,6 +6,7 @@ let topH: number = 10,
 
 export const mobileUpdate = () => {
   //################################portrate######################
+  console.log(`mobile update`);
   let winW = screen.availWidth - 15;
   let winH = screen.availHeight - 20;
   day1.offSet = day2.offSet = day3.offSet = 0;
@@ -14,6 +15,7 @@ export const mobileUpdate = () => {
   canvas.height = winH;
   topH = 10;
   let widthTile: number = winW;
+
   if (screen.width < screen.height) {
     tileH = winH / 5;
     // width setting

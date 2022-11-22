@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         test: /\.(?:ico|gif|png|jpe?g|svg)$/i,
-        type: `asset / resource`
+        type: `asset/resource`
       }
     ]
   },

@@ -10,6 +10,10 @@ import {
   tileTextDay2,
   tileTextDay3
 } from "./utils/tileText";
+import sunScr from "./img/sun.png";
+import thermoScr from "./img/thermo.png";
+import windScr from "./img/wind.png";
+
 export const canvas = <HTMLCanvasElement>document.getElementById(`canvas1`);
 export const context: any = canvas.getContext(`2d`);
 
@@ -18,7 +22,8 @@ export const sun: HTMLImageElement = new Image();
 export const thermo: HTMLImageElement = new Image();
 export const wind: HTMLImageElement = new Image();
 
-const imagePath = [`./img/sun.png`, `./img/thermo.png`, `./img/wind.png`];
+const imagePath = [sunScr, thermoScr, windScr];
+// const imagePath = ["./img/sun.png", "./img/thermo.png", "./img/wind.png"];
 const images = [sun, thermo, wind];
 var imageCount = 0; // number of loaded images;
 
