@@ -1,9 +1,15 @@
-import { save, loadLocal, loadServer } from "./functions/weatherApi";
+import { save, loadLocal, loadServer } from "./utils/fetchData";
 import { Tile } from "./classes/classes";
-import { updateText } from "./functions/textConvert";
+import { updateText } from "./utils/textConvert";
 import { tabletUpdate } from "./devices/tablet";
 import { mobileUpdate } from "./devices/mobile";
 import { desktopUpdate } from "./devices/desktop";
+import {
+  tileTextDayCur,
+  tileTextDay1,
+  tileTextDay2,
+  tileTextDay3
+} from "./utils/tileText";
 export const canvas = <HTMLCanvasElement>document.getElementById(`canvas1`);
 export const context: any = canvas.getContext(`2d`);
 
@@ -47,61 +53,6 @@ let img3Y: number = 0;
 let img3TX: number = 1;
 let img3TY: number = 1;
 let imageSize: number = 60;
-
-interface Date {
-  day: any;
-  temperature: string;
-  wind: string;
-  description?: string;
-}
-
-export const tileTextDayCur: Date = {
-  day: new Date().toLocaleDateString(`default`, {
-    weekday: `long`,
-    day: `2-digit`,
-    month: `short`,
-    year: `numeric`
-  }),
-  temperature: `0 °C `,
-  wind: `0 km/h`,
-  description: `Clear`
-};
-export const tileTextDay1: Date = {
-  day: new Date(new Date().getTime() + 86400000).toLocaleDateString(`default`, {
-    weekday: `long`,
-    day: `2-digit`,
-    month: `short`
-  }),
-  temperature: `0 °C `,
-  wind: `0 km/h`
-};
-export const tileTextDay2: Date = {
-  day: new Date(new Date().getTime() + 86400000 * 2).toLocaleDateString(
-    `default`,
-    {
-      weekday: `long`,
-      day: `2-digit`,
-      month: `short`
-    }
-  ),
-  temperature: `0 °C `,
-  wind: `0 km/h`
-};
-export const tileTextDay3: Date = {
-  day: new Date(new Date().getTime() + 86400000 * 3).toLocaleDateString(
-    `default`,
-    {
-      weekday: `long`,
-      day: `2-digit`,
-      month: `short`
-    }
-  ),
-  temperature: `0 °C `,
-  wind: `0 km/h`
-};
-
-//Get weather info in the back ground
-loadWeather();
 
 canvas.width = winW;
 canvas.height = winH;
@@ -186,7 +137,10 @@ export const day3 = new Tile(
   0,
   imageSize
 );
-//#################################Device type#############################
+// ###################################################################################
+// ################    Device type   (Mobile - Tablet - Desktop)   ###################
+// ###################################################################################
+
 const checkType = () => {
   const ua = navigator.userAgent;
   if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
@@ -200,15 +154,17 @@ const checkType = () => {
   }
   return "desktop";
 };
+
 const deviceType = checkType();
 
-// #################################################################################################
-//#####################    EventListeners (click - resize - orientation)    ########################
-// #################################################################################################
+// ###################################################################################
+// ##############    Event Listeners (click - resize - orientation)    ###############
+// ###################################################################################
+
 canvas.addEventListener(`click`, function () {
   updateText();
 });
-//Window resize event setup////
+
 window.addEventListener(`resize`, function () {
   update();
 });
@@ -217,14 +173,17 @@ screen.orientation.addEventListener(`change`, function () {
   update;
 });
 
-//############################Functions#############################
-// Load weather data
+// ###################################################################################
+// ################    Fetch & Save weather Data (Local - Server)    #################
+// ###################################################################################
+
 export async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
   if (!weather) {
     weather = await loadServer();
     save(`weather`, weather);
   }
+
   ///#######Update text######
   //Current Day
   tileTextDayCur.temperature = weather.temperature;
@@ -244,7 +203,13 @@ export async function loadWeather() {
   update();
 }
 
-///Canva update for any changes
+loadWeather();
+
+// ###################################################################################
+// ##############################    Update Canvas    ################################
+// ###################################################################################
+
+///Canvas update for any changes
 function update(): void {
   day1.offSet = day2.offSet = day3.offSet = 0;
   if (deviceType === `mobile`) mobileUpdate();
@@ -253,6 +218,7 @@ function update(): void {
     desktopUpdate();
   }
 }
+
 update();
 
 export function sub(a: number, b: number): any {

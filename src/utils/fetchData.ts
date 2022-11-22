@@ -1,5 +1,6 @@
-///Weather interface
-
+// ###################################################################################
+// ##########################      Interface (Weather)     ###########################
+// ###################################################################################
 interface Weather {
   temperature: string;
   wind: string;
@@ -23,17 +24,10 @@ interface Weather {
   ];
 }
 
-//Save data to local storage
-export function save(key: string, data: object) {
-  const expiry: number = Date.now() + 1000 * 60 * 15;
-  const obj: { value: object; expiry: number } = {
-    value: data,
-    expiry: expiry
-  };
-  localStorage.setItem(key, JSON.stringify(obj));
-}
+// ###################################################################################
+// ########################    Fetch Data   (Local Storage)   ########################
+// ###################################################################################
 
-//check if data is in local storage
 export function loadLocal(key: string) {
   const dataStr = localStorage.getItem(key);
   if (dataStr) {
@@ -45,8 +39,9 @@ export function loadLocal(key: string) {
     }
   }
 }
-
-//get data from server
+// ###################################################################################
+// ########################    Fetch Data   (Server)   ###############################
+// ###################################################################################
 
 export async function loadServer(): Promise<Weather | void> {
   const api = `https://goweather.herokuapp.com/weather/london`;
@@ -78,4 +73,17 @@ export async function loadServer(): Promise<Weather | void> {
   } catch (error) {
     alert(`Unable to updatedate reason: ${error}`);
   }
+}
+
+// ###################################################################################
+// ########################    Save Data   (Local Storage)   ########################
+// ###################################################################################
+
+export function save(key: string, data: object) {
+  const expiry: number = Date.now() + 1000 * 60 * 15;
+  const obj: { value: object; expiry: number } = {
+    value: data,
+    expiry: expiry
+  };
+  localStorage.setItem(key, JSON.stringify(obj));
 }
