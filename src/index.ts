@@ -17,13 +17,14 @@ import windScr from "./img/wind.png";
 export const canvas = <HTMLCanvasElement>document.getElementById(`canvas1`);
 export const context: any = canvas.getContext(`2d`);
 
-//Images
+// ###############################################################
+// #######################     Images   ()   #####################
+// ###############################################################
 export const sun: HTMLImageElement = new Image();
 export const thermo: HTMLImageElement = new Image();
 export const wind: HTMLImageElement = new Image();
 
 const imagePath = [sunScr, thermoScr, windScr];
-// const imagePath = ["./img/sun.png", "./img/thermo.png", "./img/wind.png"];
 const images = [sun, thermo, wind];
 var imageCount = 0; // number of loaded images;
 
@@ -31,6 +32,9 @@ var imageCount = 0; // number of loaded images;
 for (let i = 0; i < images.length; i++) {
   images[i].src = imagePath[i];
 
+  // ############################
+  // ###    Load Images ())   ###
+  // ############################
   images[i].onload = () => {
     imageCount += 1;
     if (imageCount === images.length) {
@@ -39,7 +43,11 @@ for (let i = 0; i < images.length; i++) {
     }
   };
 }
-//setup defaults golbal
+
+// #################################################################
+// #######################     Defaults   ()   #####################
+// #################################################################
+
 let winW: number = window.innerWidth;
 let winH: number = window.innerHeight;
 let tileH: number = 150;
@@ -61,7 +69,11 @@ let imageSize: number = 60;
 
 canvas.width = winW;
 canvas.height = winH;
-///Tile setup
+
+// #################################################################
+// #################     Tile Setup   (New TIle)   #################
+// #################################################################
+
 export const dayCur = new Tile(
   winW - winW / 1.2 / 2,
   topH,
@@ -142,9 +154,9 @@ export const day3 = new Tile(
   0,
   imageSize
 );
-// ###################################################################################
-// ################    Device type   (Mobile - Tablet - Desktop)   ###################
-// ###################################################################################
+// #################################################################
+// ########    Device type   (Mobile - Tablet - Desktop)   #########
+// #################################################################
 
 const checkType = () => {
   const ua = navigator.userAgent;
@@ -162,9 +174,9 @@ const checkType = () => {
 
 const deviceType = checkType();
 
-// ###################################################################################
-// ##############    Event Listeners (click - resize - orientation)    ###############
-// ###################################################################################
+// #################################################################
+// #####    Event Listeners (click - resize - orientation)    ######
+// #################################################################
 
 canvas.addEventListener(`click`, function () {
   console.log(`click event`);
@@ -180,9 +192,9 @@ screen.orientation.addEventListener(`change`, function () {
   update;
 });
 
-// ###################################################################################
-// ################    Fetch & Save weather Data (Local - Server)    #################
-// ###################################################################################
+// ################################################################
+// ######    Fetch & Save weather Data (Local - Server)    ########
+// ################################################################
 
 export async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
@@ -212,9 +224,9 @@ export async function loadWeather() {
 
 loadWeather();
 
-// ###################################################################################
-// ##############################    Update Canvas    ################################
-// ###################################################################################
+// ##################################################################
+// #####################    Update Canvas    ########################
+// ##################################################################
 
 ///Canvas update for any changes
 function update(): void {
