@@ -9,7 +9,12 @@ module.exports = {
       {
         test: /\.ts?$/i,
         exclude: /node_modules/,
-        use: `ts-loader`
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-typescript"]
+          }
+        }
       },
       {
         test: /\.(?:ico|gif|png|jpe?g|svg)$/i,

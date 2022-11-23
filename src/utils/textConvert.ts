@@ -1,60 +1,42 @@
-import { dayCur, day1, day2, day3 } from "../index";
+// #####################################################
+// ##########      Convert Text (Temp)     #############
+// #####################################################
+export function convertTemp(temperature: string) {
+  // const days = [dayCur, day1, day2, day3];
 
-// #####################################################
-// ########      Update Text (Temp - Wind)     #########
-// #####################################################
-export function updateText(): void {
-  const days = [dayCur, day1, day2, day3];
-  let fer, cel, kmh, mph;
-  if (dayCur.tileText.temperature.slice(-1) === `C`) {
+  if (temperature.slice(-1) === `C`) {
     // #####################################
     // ##      Convert Text (°C - °F)     ##
     // #####################################
-    for (let i = 0; i < days.length; i++) {
-      cel = parseFloat(days[i].tileText.temperature.slice(0, -3));
-      if (isNaN(cel)) {
-        fer = `  ?`;
-      } else {
-        fer = Math.round((cel * 9) / 5 + 32);
-      }
-      // #####################################
-      // ##    Convert Text (km/h - mph)    ##
-      // #####################################
-      kmh = parseFloat(days[i].tileText.wind.slice(0, -5));
-      if (isNaN(kmh)) {
-        mph = `  ?`;
-      } else {
-        mph = Math.round(kmh * 0.621371);
-      }
-
-      days[i].tileText.temperature = `${fer} °F`;
-      days[i].tileText.wind = `${mph} mph`;
-    }
+    let cel = parseFloat(temperature.slice(0, -3));
+    return isNaN(cel) ? `  ? °F` : `${Math.round((cel * 9) / 5 + 32)} °F`;
   } else {
-    for (let i = 0; i < days.length; i++) {
-      // #####################################
-      // ##      Convert Text (°F - °C)     ##
-      // #####################################
-      fer = parseFloat(days[i].tileText.temperature.slice(0, -3));
-      if (isNaN(fer)) {
-        cel = `  ?`;
-      } else {
-        cel = Math.round(((fer - 32) * 5) / 9);
-        if (cel < 0) cel = `-${cel * -1}`;
-        else cel = `+${cel}`;
-      }
-
-      // #####################################
-      // ##    Convert Text (mph - km/h)    ##
-      // #####################################
-      mph = parseFloat(days[i].tileText.wind.slice(0, -4));
-      if (isNaN(mph)) {
-        kmh = `  ?`;
-      } else {
-        kmh = Math.round(mph / 0.621371);
-      }
-      days[i].tileText.temperature = `${cel} °C`;
-      days[i].tileText.wind = `${kmh} km/h`;
+    // #####################################
+    // ##      Convert Text (°F - °C)     ##
+    // #####################################
+    let fer = parseFloat(temperature.slice(0, -3));
+    if (isNaN(fer)) {
+      return `  ? °C`;
+    } else {
+      let temp = Math.round(((fer - 32) * 5) / 9);
+      return temp < 0 ? `${temp} °C` : `+${temp} °C`;
     }
+  }
+}
+// #####################################
+// ##    Convert Text (km/h - mph)    ##
+// #####################################
+
+export function convertWind(wind: string) {
+  if (wind.slice(-3) === `mph`) {
+    console.log(wind);
+    let mph = parseFloat(wind.slice(0, -4));
+    return isNaN(mph) ? `  ? km/h` : `${Math.round(mph / 0.621371)} km/h`;
+  } else {
+    // #####################################
+    // ##    Convert Text (mph - km/h)    ##
+    // #####################################
+    let kmh = parseFloat(wind.slice(0, -5));
+    return isNaN(kmh) ? `  ? mph` : `${Math.round(kmh * 0.621371)} mph`;
   }
 }

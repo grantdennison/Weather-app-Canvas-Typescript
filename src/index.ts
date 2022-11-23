@@ -1,6 +1,6 @@
 import { save, loadLocal, loadServer } from "./utils/fetchData";
 import { Tile } from "./classes/classes";
-import { updateText } from "./utils/textConvert";
+import { convertTemp, convertWind } from "./utils/textConvert";
 import { tabletUpdate } from "./devices/tablet";
 import { mobileUpdate } from "./devices/mobile";
 import { desktopUpdate } from "./devices/desktop";
@@ -222,7 +222,17 @@ export async function loadWeather() {
   update();
 }
 
-loadWeather();
+// ##################################################################
+// ##############      Update Text (Temp - Wind)     ################
+// ##################################################################
+
+function updateText(): void {
+  let days = [tileTextDayCur, tileTextDay1, tileTextDay2, tileTextDay3];
+  for (let i = 0; i < days.length; i++) {
+    days[i].temperature = convertTemp(days[i].temperature);
+    days[i].wind = convertWind(days[i].wind);
+  }
+}
 
 // ##################################################################
 // #####################    Update Canvas    ########################
@@ -238,8 +248,4 @@ function update(): void {
   }
 }
 
-update();
-
-export function sub(a: number, b: number): any {
-  return a + b;
-}
+loadWeather();

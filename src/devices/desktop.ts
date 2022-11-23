@@ -17,7 +17,7 @@ export const desktopUpdate = () => {
   // ##    Canvas (Width & Height)   ##
   // ##################################
   canvas.width = winW;
-  if (winH < 650) winH = 650;
+  if (winH < 800) winH = 800;
 
   canvas.height = winH;
   topH = (winH - tileCurH - tileH * 3) / 2;
@@ -131,6 +131,7 @@ export const desktopUpdate = () => {
     // ########################
     // ##    TIle (Height)   ##
     // ########################
+    dayCur.tileH = tileCurH;
     day1.tileH = day2.tileH = day3.tileH = tileCurH;
 
     // ###################
