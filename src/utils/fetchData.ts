@@ -1,6 +1,6 @@
-// #####################################################
-// ###########      Interface (Weather)     ############
-// #####################################################
+// ##################################
+// ##      Interface (Weather)     ##
+// ##################################
 interface Weather {
   temperature: string;
   wind: string;
@@ -24,9 +24,9 @@ interface Weather {
   ];
 }
 
-// ########################################################
-// ##########    Fetch Data   (Local Storage)   ###########
-// ########################################################
+// #######################################
+// ##    Fetch Data   (Local Storage)   ##
+// #######################################
 
 export function loadLocal(key: string) {
   const dataStr = localStorage.getItem(key);
@@ -39,11 +39,11 @@ export function loadLocal(key: string) {
     }
   }
 }
-// ###################################################
-// ##########    Fetch Data   (Server)   #############
-// ###################################################
+// ################################
+// ##    Fetch Data   (Server)   ##
+// ################################
 
-export async function loadServer(): Promise<Weather | void> {
+export async function loadServer(): Promise<Weather | any | boolean> {
   const api = `https://goweather.herokuapp.com/weather/london`;
   try {
     const response = await fetch(api);
@@ -71,13 +71,14 @@ export async function loadServer(): Promise<Weather | void> {
 
     return data;
   } catch (error) {
-    alert(`Unable to updatedate reason: ${error}`);
+    alert(`Unable to fetch data: Reason = ${error}`);
+    return false;
   }
 }
 
-// ########################################################
-// ###########    Save Data   (Local Storage)   ###########
-// ########################################################
+// ######################################
+// ##    Save Data   (Local Storage)   ##
+// ######################################
 
 export function save(key: string, data: object) {
   const expiry: number = Date.now() + 1000 * 60 * 15;

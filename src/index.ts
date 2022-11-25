@@ -17,9 +17,9 @@ import windScr from "./img/wind.png";
 export const canvas = <HTMLCanvasElement>document.getElementById(`canvas1`);
 export const context: any = canvas.getContext(`2d`);
 
-// ###############################################################
-// #######################     Images   ()   #####################
-// ###############################################################
+// #######################
+// ##     Images   ()   ##
+// #######################
 export const sun: HTMLImageElement = new Image();
 export const thermo: HTMLImageElement = new Image();
 export const wind: HTMLImageElement = new Image();
@@ -32,9 +32,9 @@ var imageCount = 0; // number of loaded images;
 for (let i = 0; i < images.length; i++) {
   images[i].src = imagePath[i];
 
-  // ############################
-  // ###    Load Images ())   ###
-  // ############################
+  // ##########################
+  // ##    Load Images ())   ##
+  // ##########################
   images[i].onload = () => {
     imageCount += 1;
     if (imageCount === images.length) {
@@ -44,9 +44,9 @@ for (let i = 0; i < images.length; i++) {
   };
 }
 
-// #################################################################
-// #######################     Defaults   ()   #####################
-// #################################################################
+// #########################
+// ##     Defaults   ()   ##
+// #########################
 
 let winW: number = window.innerWidth;
 let winH: number = window.innerHeight;
@@ -70,9 +70,9 @@ let imageSize: number = 60;
 canvas.width = winW;
 canvas.height = winH;
 
-// #################################################################
-// #################     Tile Setup   (New TIle)   #################
-// #################################################################
+// ###################################
+// ##     Tile Setup   (New TIle)   ##
+// ###################################
 
 export const dayCur = new Tile(
   winW - winW / 1.2 / 2,
@@ -154,9 +154,9 @@ export const day3 = new Tile(
   0,
   imageSize
 );
-// #################################################################
-// ########    Device type   (Mobile - Tablet - Desktop)   #########
-// #################################################################
+// ####################################################
+// ##    Device type   (Mobile - Tablet - Desktop)   ##
+// ####################################################
 
 const checkType = () => {
   const ua = navigator.userAgent;
@@ -174,9 +174,9 @@ const checkType = () => {
 
 const deviceType = checkType();
 
-// #################################################################
-// #####    Event Listeners (click - resize - orientation)    ######
-// #################################################################
+// ##########################################################
+// ##    Event Listeners (click - resize - orientation)    ##
+// ##########################################################
 
 canvas.addEventListener(`click`, function () {
   console.log(`click event`);
@@ -192,39 +192,42 @@ screen.orientation.addEventListener(`change`, function () {
   update;
 });
 
-// ################################################################
-// ######    Fetch & Save weather Data (Local - Server)    ########
-// ################################################################
+// ######################################################
+// ##    Fetch & Save weather Data (Local - Server)    ##
+// ######################################################
 
 export async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
   if (!weather) {
     weather = await loadServer();
-    save(`weather`, weather);
-  }
+    if (weather !== false) {
+      save(`weather`, weather);
+    }
 
-  ///#######Update text######
-  //Current Day
-  tileTextDayCur.temperature = weather.temperature;
-  tileTextDayCur.wind = weather.wind;
-  tileTextDayCur.description = weather.description;
-  // Day 1
-  tileTextDay1.temperature = weather.forecast[0].temperature;
-  tileTextDay1.wind = weather.forecast[0].wind;
-  // Day 2
-  tileTextDay2.temperature = weather.forecast[1].temperature;
-  tileTextDay2.wind = weather.forecast[1].wind;
-  // Day 3
-  tileTextDay3.temperature = weather.forecast[2].temperature;
-  tileTextDay3.wind = weather.forecast[2].wind;
-  updateText();
-  updateText();
-  update();
+    ///#######Update text######
+    //Current Day
+    tileTextDayCur.temperature = weather.temperature;
+    tileTextDayCur.wind = weather.wind;
+    tileTextDayCur.description = weather.description;
+
+    // Day 1
+    tileTextDay1.temperature = weather.forecast[0].temperature;
+    tileTextDay1.wind = weather.forecast[0].wind;
+    // Day 2
+    tileTextDay2.temperature = weather.forecast[1].temperature;
+    tileTextDay2.wind = weather.forecast[1].wind;
+    // Day 3
+    tileTextDay3.temperature = weather.forecast[2].temperature;
+    tileTextDay3.wind = weather.forecast[2].wind;
+    updateText();
+    updateText();
+    update();
+  }
 }
 
-// ##################################################################
-// ##############      Update Text (Temp - Wind)     ################
-// ##################################################################
+// ########################################
+// ##      Update Text (Temp - Wind)     ##
+// ########################################
 
 function updateText(): void {
   let days = [tileTextDayCur, tileTextDay1, tileTextDay2, tileTextDay3];
@@ -234,9 +237,9 @@ function updateText(): void {
   }
 }
 
-// ##################################################################
-// #####################    Update Canvas    ########################
-// ##################################################################
+// #########################
+// ##    Update Canvas    ##
+// #########################
 
 ///Canvas update for any changes
 function update(): void {

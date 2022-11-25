@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1669345687053" clover="3.2.0">
+  <project timestamp="1669345687053" name="All files">
+    <metrics statements="43" coveredstatements="42" conditionals="22" coveredconditionals="20" methods="6" coveredmethods="6" elements="71" coveredelements="68" complexity="0" loc="43" ncloc="43" packages="1" files="2" classes="2"/>
+    <file name="fetchData.ts" path="C:\Users\User\OneDrive\Programming courses\Typescript\Weather-app-Canvas-Typescript\src\utils\fetchData.ts">
+      <metrics statements="26" coveredstatements="25" conditionals="8" coveredconditionals="6" methods="4" coveredmethods="4"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="33" count="1" type="stmt"/>
+      <line num="34" count="1" type="cond" truecount="1" falsecount="1"/>
+      <line num="35" count="1" type="stmt"/>
+      <line num="36" count="1" type="cond" truecount="3" falsecount="1"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="44" count="1" type="stmt"/>
+      <line num="49" count="3" type="stmt"/>
+      <line num="50" count="3" type="stmt"/>
+      <line num="51" count="3" type="stmt"/>
+      <line num="52" count="2" type="stmt"/>
+      <line num="53" count="2" type="stmt"/>
+      <line num="67" count="2" type="stmt"/>
+      <line num="68" count="24" type="stmt"/>
+      <line num="70" count="2" type="cond" truecount="2" falsecount="0"/>
+      <line num="71" count="1" type="stmt"/>
+      <line num="72" count="1" type="stmt"/>
+      <line num="75" count="2" type="stmt"/>
+      <line num="76" count="2" type="stmt"/>
+      <line num="79" count="1" type="stmt"/>
+      <line num="84" count="2" type="stmt"/>
+      <line num="85" count="2" type="stmt"/>
+      <line num="89" count="2" type="stmt"/>
+      <line num="91" count="1" type="stmt"/>
+    </file>
+    <file name="textConvert.ts" path="C:\Users\User\OneDrive\Programming courses\Typescript\Weather-app-Canvas-Typescript\src\utils\textConvert.ts">
+      <metrics statements="17" coveredstatements="17" conditionals="14" coveredconditionals="14" methods="2" coveredmethods="2"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="9" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="13" count="4" type="stmt"/>
+      <line num="14" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="20" count="4" type="stmt"/>
+      <line num="21" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="22" count="1" type="stmt"/>
+      <line num="25" count="3" type="stmt"/>
+      <line num="26" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="35" count="8" type="cond" truecount="2" falsecount="0"/>
+      <line num="36" count="4" type="stmt"/>
+      <line num="37" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="43" count="4" type="stmt"/>
+      <line num="44" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="47" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

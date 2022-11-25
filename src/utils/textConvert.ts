@@ -29,7 +29,6 @@ export function convertTemp(temperature: string) {
 
 export function convertWind(wind: string) {
   if (wind.slice(-3) === `mph`) {
-    console.log(wind);
     let mph = parseFloat(wind.slice(0, -4));
     return isNaN(mph) ? `  ? km/h` : `${Math.round(mph / 0.621371)} km/h`;
   } else {

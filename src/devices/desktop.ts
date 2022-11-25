@@ -80,21 +80,21 @@ export const desktopUpdate = () => {
     // #####################
     dayCur.img2Y = tileCurH / 1.5;
     day1.img2Y = day2.img2Y = day3.img2Y = tileH / 2;
-    if (winW > 570) {
+    if (winW > 700) {
       // ###########################
-      // ##    Image (3X > 570)   ##
+      // ##    Image (3X > 700)   ##
       // ###########################
       dayCur.img3X = widthTile - 300;
 
       // ###########################
-      // ##    Image (3Y > 570)   ##
+      // ##    Image (3Y > 700)   ##
       // ###########################
       dayCur.img3Y = tileCurH / 3;
     } else {
       // #####################
       // ##    Image (3X)   ##
       // #####################
-      dayCur.img3X = widthTile - 140;
+      dayCur.img3X = widthTile - 180;
 
       // #####################
       // ##    Image (3Y)   ##
@@ -104,7 +104,7 @@ export const desktopUpdate = () => {
       // ############################
       // ##    Image (3X - Text)   ##
       // ############################
-      dayCur.img3TX = 10;
+      dayCur.img3TX = 50;
 
       // ############################
       // ##    Image (3Y - Text)   ##

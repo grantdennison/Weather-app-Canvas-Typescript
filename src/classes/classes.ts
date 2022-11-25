@@ -73,8 +73,9 @@ export class Tile {
   }
 
   draw() {
-    //###########################################Tiles setup#######################################
-
+    // ##################################
+    // ######    Tiles Setup ()   #######
+    // ##################################
     context.globalAlpha = 0.4;
     context.fillStyle = this.colour;
     context.fillRect(
@@ -100,7 +101,9 @@ export class Tile {
       this.tileH
     );
 
-    // ####################################################Text editor##########################################
+    // ##################################
+    // ######    Text Editor ()   #######
+    // ##################################
 
     context.textAlign = "left";
     context.stroke();
@@ -108,16 +111,25 @@ export class Tile {
     context.strokeStyle = `black`;
     context.fillStyle = `white`;
     context.lineWidth = 4;
-    ///Day
+
+    // ##########################
+    // ######    Day ()   #######
+    // ##########################
     context.font = "italic  33px LatoWeb";
     context.strokeText(`${this.date[0]} ~`, 10 + this.x, 33 + this.y);
     context.fillText(`${this.date[0]} ~`, 10 + this.x, 33 + this.y);
-    ////Date
+
+    // ###########################
+    // ######    Date ()   #######
+    // ###########################
     context.textAlign = "right";
     context.font = "italic  20px LatoWeb";
     context.strokeText(this.date[1], this.textX + this.x, this.textY + this.y);
     context.fillText(this.date[1], this.textX + this.x, this.textY + this.y);
-    ////Temp
+
+    // ###########################
+    // ######    Temp ()   #######
+    // ###########################
     context.textAlign = "left";
     context.font = "italic  33px LatoWeb";
     context.strokeText(
@@ -130,7 +142,10 @@ export class Tile {
       this.x + this.img1X + 50,
       this.y + this.img1Y + 45 - this.offSet
     );
-    ////wind
+
+    // ###########################
+    // ######    Wind ()   #######
+    // ###########################
     context.font = "italic  33px LatoWeb";
     context.strokeText(
       this.tileText.wind,
@@ -143,7 +158,9 @@ export class Tile {
       this.y + this.img2Y + 45 - this.offSet
     );
 
-    ///############################################images#########################
+    // ##############################
+    // ######    Images ())  #######
+    // ##############################
     context.drawImage(
       thermo,
       this.x + this.img1X,
@@ -166,7 +183,10 @@ export class Tile {
         100,
         100
       );
-      ////Description
+
+      // ##################################
+      // ######    Description ()   #######
+      // ##################################
 
       context.font = "italic  30px LatoWeb";
       context.textAlign = "center";
