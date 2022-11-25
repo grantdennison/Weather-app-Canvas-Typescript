@@ -1,4 +1,4 @@
-import { loadServer, loadLocal, save } from "../utils/fetchData";
+import { loadServer, loadLocal, save, expiryMin } from "../utils/fetchData";
 
 // ##########################################
 // ##      Local Storage - Test (Save)     ##
@@ -9,7 +9,7 @@ test("Data is added into local storage", () => {
   const mockJson = { value: "json data" };
   save(mockId, mockJson);
   // 15 min expiry
-  const expiry = Date.now() + 1000 * 60 * 15;
+  const expiry = Date.now() + 1000 * 60 * expiryMin;
   expect(localStorage.getItem(mockId)).toEqual(
     JSON.stringify({ value: mockJson, expiry: expiry })
   );

@@ -1,3 +1,8 @@
+// ####################################
+// ##      Expiry time (minutes)     ##
+// ####################################
+export const expiryMin: number = 15;
+
 // ##################################
 // ##      Interface (Weather)     ##
 // ##################################
@@ -81,7 +86,7 @@ export async function loadServer(): Promise<Weather | any | boolean> {
 // ######################################
 
 export function save(key: string, data: object) {
-  const expiry: number = Date.now() + 1000 * 60 * 15;
+  const expiry: number = Date.now() + 1000 * 60 * expiryMin;
   const obj: { value: object; expiry: number } = {
     value: data,
     expiry: expiry

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.15% </span>
+                <span class="strong">96.29% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/26</span>
+                <span class='fraction'>26/27</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.15% </span>
+                <span class="strong">96.29% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>25/26</span>
+                <span class='fraction'>26/27</span>
             </div>
         
             
@@ -153,33 +153,17 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,31 +227,62 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">// ##################################
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// ####################################
+// ##      Expiry time (minutes)     ##
+// ####################################
+export const expiryMin: number = 15;
+&nbsp;
+// ##################################
 // ##      Interface (Weather)     ##
 // ##################################
-// interface Weather {
-//   temperature: string;
-//   wind: string;
-//   description: string;
-//   forecast: [
-//     {
-//       day: string;
-//       temperature: string;
-//       wind: string;
-//     },
-//     {
-//       day: string;
-//       temperature: string;
-//       wind: string;
-//     },
-//     {
-//       day: string;
-//       temperature: string;
-//       wind: string;
-//     }
-//   ];
-// }
+interface Weather {
+  temperature: string;
+  wind: string;
+  description: string;
+  fo<span class="missing-if-branch" title="else path not taken" >E</span>recast: [
+    {
+      day: string;
+      temperature: string;
+      wind: string;
+    },<span class="missing-if-branch" title="else path not taken" >E</span>
+    {<span class="cstat-no" title="statement not covered" ></span>
+      day: string;
+      temperature: string;
+      wind: string;
+    },
+    {
+      day: string;
+      temperature: string;
+      wind: string;
+    }
+  ];
+}
 &nbsp;
 // #######################################
 // ##    Fetch Data   (Local Storage)   ##
@@ -276,19 +291,19 @@
 export function loadLocal(key: string) {
   const dataStr = localStorage.getItem(key);
   if (dataStr) {
-    <span class="missing-if-branch" title="else path not taken" >E</span>const data: { value: object; expiry?: number } = JSON.parse(dataStr);
+    const data: { value: object; expiry?: number } = JSON.parse(dataStr);
     if (data.expiry &amp;&amp; data.expiry &gt; Date.now()) {
       return data.value;
     } else {
       return false;
-    }<span class="missing-if-branch" title="else path not taken" >E</span>
-  }<span class="cstat-no" title="statement not covered" ></span>
+    }
+  }
 }
 // ################################
 // ##    Fetch Data   (Server)   ##
 // ################################
 &nbsp;
-export async function loadServer(): Promise&lt;any | boolean&gt; {
+export async function loadServer(): Promise&lt;Weather | any | boolean&gt; {
   const api = `https://goweather.herokuapp.com/weather/london`;
   try {
     const response = await fetch(api);
@@ -326,7 +341,7 @@ export async function loadServer(): Promise&lt;any | boolean&gt; {
 // ######################################
 &nbsp;
 export function save(key: string, data: object) {
-  const expiry: number = Date.now() + 1000 * 60 * 15;
+  const expiry: number = Date.now() + 1000 * 60 * expiryMin;
   const obj: { value: object; expiry: number } = {
     value: data,
     expiry: expiry
@@ -340,7 +355,7 @@ export function save(key: string, data: object) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-11-25T03:08:07.018Z
+                at 2022-11-25T09:35:32.208Z
             </div>
         <script src="prettify.js"></script>
         <script>

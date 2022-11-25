@@ -241,7 +241,6 @@ function updateText(): void {
 // ##    Update Canvas    ##
 // #########################
 
-///Canvas update for any changes
 function update(): void {
   day1.offSet = day2.offSet = day3.offSet = 0;
   if (deviceType === `mobile`) mobileUpdate();
