@@ -198,31 +198,31 @@ screen.orientation.addEventListener(`change`, function () {
 
 export async function loadWeather() {
   let weather: any = await loadLocal(`weather`);
+  if (!weather) weather = await loadServer();
+
   if (!weather) {
-    weather = await loadServer();
-    if (weather !== false) {
-      save(`weather`, weather);
-    }
-
-    ///#######Update text######
-    //Current Day
-    tileTextDayCur.temperature = weather.temperature;
-    tileTextDayCur.wind = weather.wind;
-    tileTextDayCur.description = weather.description;
-
-    // Day 1
-    tileTextDay1.temperature = weather.forecast[0].temperature;
-    tileTextDay1.wind = weather.forecast[0].wind;
-    // Day 2
-    tileTextDay2.temperature = weather.forecast[1].temperature;
-    tileTextDay2.wind = weather.forecast[1].wind;
-    // Day 3
-    tileTextDay3.temperature = weather.forecast[2].temperature;
-    tileTextDay3.wind = weather.forecast[2].wind;
-    updateText();
-    updateText();
-    update();
+    save(`weather`, weather);
   }
+
+  ///#######Update text######
+  //Current Day
+  tileTextDayCur.temperature = weather.temperature;
+  tileTextDayCur.wind = weather.wind;
+  tileTextDayCur.description = weather.description;
+
+  // Day 1
+  tileTextDay1.temperature = weather.forecast[0].temperature;
+  tileTextDay1.wind = weather.forecast[0].wind;
+  // Day 2
+  tileTextDay2.temperature = weather.forecast[1].temperature;
+  tileTextDay2.wind = weather.forecast[1].wind;
+  // Day 3
+  tileTextDay3.temperature = weather.forecast[2].temperature;
+  tileTextDay3.wind = weather.forecast[2].wind;
+  console.log(`updating text`, weather.temperature);
+  updateText();
+  updateText();
+  update();
 }
 
 // ########################################
