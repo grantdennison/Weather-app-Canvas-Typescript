@@ -10,3 +10,5 @@ npm run build:p -- Production build - dist folder.
 npm run build:w -- Development watch live convert JS.
 npm run build:dev -- Convert to JS readable.
 npm star -- Live changes in browser
+
+link for website: https://grant-dennison.co.uk/weather-app/dist/
