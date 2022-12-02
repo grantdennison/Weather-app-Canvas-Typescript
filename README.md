@@ -1,7 +1,7 @@
 # Weather-app-Canvas-Typescript
 
 First app using typescript
-Get weather info from Api and display using canvas
+Get weather info from Api and display using canvas.
 
 npm run test -- To run test.
 npm run test:cov -- To run test coverage.
