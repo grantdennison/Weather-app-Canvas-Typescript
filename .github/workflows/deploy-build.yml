@@ -1,11 +1,11 @@
-name: "Deploy to hostinger";
-
+name: Deploy to hostinger
+ 
 on:
   push:
     paths:
-      - "dist/**"
+      - dist/**
       
-     jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     env:
