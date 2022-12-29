@@ -44,9 +44,9 @@ export function loadLocal(key: string) {
     }
   }
 }
-// ################################
-// ##    Fetch Data   (Server)   ##
-// ################################
+// #################################
+// ##    Fetch Data   (Server)    ##
+// #################################
 
 export async function loadServer(): Promise<Weather | any | boolean> {
   const api = `https://goweather.herokuapp.com/weather/london`;
