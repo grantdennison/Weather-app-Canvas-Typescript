@@ -17,6 +17,7 @@ jobs:
       uses: SamKirkland/web-deploy@v1
       with:
         target-server: ${{ secrets.HOST }}
+        ssh-port: ${{ secrets.SSH_PORT }}
         remote-user: ${{ secrets.SSH_USER }}
         private-ssh-key: ${{ secrets.PRIVATE_KEY }}
         destination-path: ~/public_html/weather-app/
