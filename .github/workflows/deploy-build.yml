@@ -6,20 +6,11 @@ on:
       - "dist/**"
       
       jobs:
-  deploy_job:
-    runs-on: ubuntu-latest
-    name: build&deploy
-    steps:
-      # To use this repository's private action, you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: deploy file to server
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
+  - name: Copy folder content recursively to remote
+        uses: garygrossgarten/github-action-scp@release
         with:
-          username: 'u426412520'
-          server: '${{ secrets.SERVER_IP }}'
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: './dist/*'
-          remote_path: './public_html/weather-app'
-          args: '-o ConnectTimeout=5'
+          local: dist
+          remote: /weather-app
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.PASSWORD }}
