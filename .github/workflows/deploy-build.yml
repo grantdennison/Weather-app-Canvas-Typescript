@@ -1,0 +1,25 @@
+name: "Deploy to hostinger";
+
+on:
+  push:
+    paths:
+      - "dist/**"
+      
+      jobs:
+  deploy_job:
+    runs-on: ubuntu-latest
+    name: build&deploy
+    steps:
+      # To use this repository's private action, you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: deploy file to server
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'root'
+          server: '${{ secrets.SERVER_IP }}'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          local_path: './dist/*'
+          remote_path: 'https://webhooks.hostinger.com/deploy/b410fdbd6c29e857406425002d28048c'
+          args: '-o ConnectTimeout=5'
