@@ -10,7 +10,7 @@ on:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: dist
-          remote: /weather-app
+          remote: weather-app
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
