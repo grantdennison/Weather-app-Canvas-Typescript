@@ -5,12 +5,33 @@ on:
     paths:
       - "dist/**"
       
-      jobs:
-  - name: Copy folder content recursively to remote
-        uses: garygrossgarten/github-action-scp@release
+     jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+      LOCAL: dist
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - name: Copy folder content recursively to remote
+        uses: ./
         with:
           local: dist
-          remote: weather-app
+          remote: scp/directory
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.PASSWORD }}
+          privateKey: ${{ secrets.PRIVATE_KEY}}
+#       - name: Copy folder content recursively to remote (clean directory)
+#         uses: ./
+#         with:
+#           local: test
+#           remote: scp/directory
+#           host: ${{ secrets.HOST }}
+#           username: ${{ secrets.SSH_USER }}
+#           password: ${{ secrets.PASSWORD }}
+#           privateKey: ${{ secrets.PRIVATE_KEY}}
+#           rmRemote: true
+#           dotfiles: true      
