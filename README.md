@@ -11,4 +11,4 @@ npm run build:w -- Development watch live convert JS.
 npm run build:dev -- Convert to JS readable.
 npm star -- Live changes in browser
 
-link for website: https://grant-dennison.co.uk/weather-app/dist/
+link for website: https://grant-dennison.co.uk/weather-app-canvas
