@@ -6,19 +6,19 @@ on:
       - dist/**
       
 jobs:
-  web-deploy:
-    name: 🚀 Deploy Website Every Commit
+  deploy:
     runs-on: ubuntu-latest
+    name: deploy test
     steps:
-    - name: 🚚 Get Latest Codes
-      uses: actions/checkout@v3
-      
-    - name: Copy folder content recursively to remote
-      uses: ArthurYdalgo/github-action-scp@release/0.8.0
-      with:
-        local: dist
-        remote: weather-app
-        host: ${{ secrets.HOST_IP }}
-        PORT: ${{ secrets.PORT }}
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: deploy
+        id: funny-deploy
+        uses: BoatNg/funny-deploy@master
+        env:
+          REMOTE_HOST: "${{ secrets.HOST_IP }}"
+          REMOTE_USER: "${{ secrets.SSH_USERNAME }}"
+          REMOTE_PASSWORD: "${{ secrets.SSH_PASSWORD }}"
+          REMOTE_PATH: "/home/www/deploy-action"
+          SOURCE: "dist/"
