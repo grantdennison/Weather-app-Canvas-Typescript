@@ -14,7 +14,7 @@ jobs:
       uses: actions/checkout@v3
       
     - name: Copy folder content recursively to remote
-      uses: ArthurYdalgo/github-action-scp@0.8.0
+      uses: ArthurYdalgo/github-action-scp@release/0.8.0
       with:
         local: dist
         remote: weather-app
