@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack serve --mode production --open",
     "build:p": "webpack  --mode production",
-    "build:pdfdf": "rimraf _productBuild/dist && copyfiles dist/** _productBuild",
+    "postbuild:p": "rimraf _productBuild/dist && copyfiles dist/** _productBuild",
     "build:w": "webpack --mode development --watch",
     "build:dev": "webpack --mode development",
     "start": "webpack serve --mode development --open",
