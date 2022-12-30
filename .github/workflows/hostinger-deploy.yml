@@ -19,6 +19,7 @@ jobs:
         env:
           REMOTE_HOST: "${{ secrets.HOST_IP }}"
           REMOTE_USER: "${{ secrets.SSH_USERNAME }}"
+          REMOTE_PORT: "${{ secrets.SSH_PORT }}"
           REMOTE_PASSWORD: "${{ secrets.SSH_PASSWORD }}"
           REMOTE_PATH: "/home/www/deploy-action"
           SOURCE: "dist/"
